@@ -12,7 +12,6 @@ import firebaseConfig from './firebaseConfig';
 
 function App() {
   firebase.initializeApp(firebaseConfig);
-  console.log(firebase, '-->>', firebaseConfig)
   return (
     <BrowserRouter>
       <Routes>

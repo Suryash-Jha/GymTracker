@@ -8,7 +8,6 @@ import Typography from '@mui/joy/Typography';
 import SvgIcon from '@mui/joy/SvgIcon';
 
 export default function IconXContentCard(props) {
-    console.log(props)
     return (
         <Card variant="solid" invertedColors sx={{
             margin: '1vh',
