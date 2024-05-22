@@ -23,7 +23,7 @@ export default function DrawerBasic() {
     return (
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Grid xs={12} md={12} lg={12}>
-                <Typography sx={{ fontSize: '8vh' }} align="center">GYM TRACKER</Typography>
+                <Typography sx={{ fontSize: '5vh' }} align="center">GYM TRACKER</Typography>
             </Grid>
             <IconButton onClick={toggleDrawer(true)}>
                 <MenuIcon />

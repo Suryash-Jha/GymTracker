@@ -1,44 +1,42 @@
 import { Button, Grid, Typography, Box } from '@mui/joy'
 import React from 'react'
 import IconXContentCard from '../components/IconXContentCard'
-import firebase from 'firebase/compat/app';
 import { useEffect, useState } from 'react';
 import Add from '@mui/icons-material/Add';
 import UploadExerciseModal from '../components/UploadExerciseModal';
+import { postExerciseData, getOverallData } from '../actions/MainAction';
+import firebase from 'firebase/compat/app';
 
 // import RepeatIcon from '@material-ui/icons/Repeat';
 
 const HomePage = () => {
     const [data, setData] = useState([])
-    const [openModal, setOpenModal] = React.useState(false);
+    const [openModal, setOpenModal] = useState(false);
+    const [exerciseName, setExerciseName] = useState('');
+    const [reps, setReps] = useState(0);
+    const [weightLifted, setWeightLifted] = useState(0);
 
-
-    useEffect(() => {
-        const db = firebase.firestore()
-        db.collection('OverallStats').get().then(querySnapshot =>
-            setData(querySnapshot.docs.map(doc => doc.data()))
+    const fetchOverallData =  () => {
+         getOverallData().then(querySnapshot =>
+            setData(querySnapshot)
         )
-        // db.collection('OverallStats').doc("OverallStatStrictVal").set({
-
-        //     totalReps: 50,
-        //     initialWeight: 54,
-        //     currentWeight: 57,
-        //     totalSets: 10,
-        //     totalSteps: 200
-
-        // }).then(() => {
-        //     console.log("Document successfully written!");
-        // })
-        //     .catch((error) => {
-        //         console.error("Error writing document: ", error);
-        //     });
+    }
+    useEffect(() => {
+        fetchOverallData()
     }, [])
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = async (e) => {
         e.preventDefault()
+        const body = {
+            exerciseName,
+            reps,
+            weightLifted
+        }
+        await postExerciseData(body)
         console.log('form submitted')
         setOpenModal(!openModal)
+        fetchOverallData()
     }
-    console.log(data, 'data')
+    console.log(data.totalReps, 'data')
     return (
         <Box sx={{
             background: '#f7cea4',
@@ -50,19 +48,21 @@ const HomePage = () => {
             },
             borderRadius: '5vh'
         }}>
-            {data && data.length > 0 ? (
+            {data ? (
                 <Grid container xs={12} md={12} lg={12}>
+                <Grid xs={12} md={12} lg={12} sx={{display: 'flex', justifyContent: 'flex-end'}}>
+
                     <Button
-                        variant="outlined"
-                        color="neutral"
+                        variant="solid"
+                        color="primary"
                         startIcon={<Add />}
                         onClick={() => setOpenModal(true)}
                     >
-                        New project
+                        Add Exercise
                     </Button>
-                    
+                    </Grid>
                     <Grid xs={12} md={12} lg={12}>
-                        <Typography sx={{ fontSize: '6vh' }}>Overall Stats</Typography>
+                        <Typography sx={{ fontSize: '5vh' }}>Overall Stats</Typography>
                     </Grid>
 
                     <Grid xs={12} md={6} lg={3}>
@@ -70,7 +70,7 @@ const HomePage = () => {
                         <IconXContentCard
                             Logo="https://via.placeholder.com/150"
                             Title="Total Steps"
-                            Value={data[0].totalSteps}
+                            Value={data.totalSteps}
 
                         />
                     </Grid>
@@ -79,7 +79,7 @@ const HomePage = () => {
                         <IconXContentCard
                             Logo="https://via.placeholder.com/150"
                             Title="Total Reps Performed"
-                            Value={data[0].totalReps}
+                            Value={data.totalReps}
                         />
                     </Grid>
                     <Grid xs={12} md={6} lg={3}>
@@ -88,7 +88,7 @@ const HomePage = () => {
 
                             Logo="https://via.placeholder.com/150"
                             Title="Total Sets Performed"
-                            Value={data[0].totalSets}
+                            Value={data.totalSets}
                         />
                     </Grid>
                     <Grid xs={12} md={6} lg={3}>
@@ -97,12 +97,12 @@ const HomePage = () => {
 
                             Logo="https://via.placeholder.com/150"
                             Title="Weight Growth"
-                            Value={`${data[0].currentWeight - data[0].initialWeight} KGs `}
-                            ColorX={data[0].currentWeight - data[0].initialWeight > 0 ? "#00ff00" : "#c51c1c"}
+                            Value={`${data.currentWeight - data.initialWeight} KGs `}
+                            ColorX={data.currentWeight - data.initialWeight > 0 ? "#00ff00" : "#c51c1c"}
                         />
                     </Grid>
                     <Grid xs={12} md={12} lg={12}>
-                        <Typography sx={{ fontSize: '6vh' }}>Today's Stats</Typography>
+                        <Typography sx={{ fontSize: '5vh' }}>Today's Stats</Typography>
                     </Grid>
 
                     <Grid xs={12} md={6} lg={3}>
@@ -148,6 +148,13 @@ const HomePage = () => {
                 openModal={openModal}
                 setOpenModal={setOpenModal}
                 handleFormSubmit={handleFormSubmit}
+                exerciseName={exerciseName}
+                setExerciseName={setExerciseName}
+                reps={reps}
+                setReps={setReps}
+                weightLifted={weightLifted}
+                setWeightLifted={setWeightLifted}
+
             />
             
 

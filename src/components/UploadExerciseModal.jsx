@@ -13,7 +13,14 @@ import Stack from '@mui/joy/Stack';
 export default function UploadExerciseModal({
     openModal,
     setOpenModal,
-    handleFormSubmit
+    handleFormSubmit,
+    exerciseName,
+    setExerciseName,
+    reps,
+    setReps,
+    weightLifted,
+    setWeightLifted
+
 }
 ) {
     return (
@@ -23,19 +30,23 @@ export default function UploadExerciseModal({
 
                 <ModalDialog>
                     <ModalClose variant="plain" sx={{ m: 1 }} />
-                    <DialogTitle>Create new project</DialogTitle>
-                    <DialogContent>Fill in the information of the project.</DialogContent>
+                    <DialogTitle>Add Exercise</DialogTitle>
+                    {/* <DialogContent>Fill in the information of the project.</DialogContent> */}
                     <form
                         onSubmit={handleFormSubmit}
                     >
                         <Stack spacing={2}>
                             <FormControl>
-                                <FormLabel>Name</FormLabel>
-                                <Input autoFocus required />
+                                <FormLabel>Exercise Name: (Will be a dropdown)</FormLabel>
+                                <Input value={exerciseName} onChange={(e)=>setExerciseName(e.target.value)} autoFocus required />
                             </FormControl>
                             <FormControl>
-                                <FormLabel>Description</FormLabel>
-                                <Input required />
+                                <FormLabel>Weight Lifted</FormLabel>
+                                <Input type="number" value={weightLifted} onChange={(e)=>setWeightLifted(e.target.value)} required />
+                            </FormControl>
+                            <FormControl>
+                                <FormLabel>Reps Performed</FormLabel>
+                                <Input type="number" value={reps} onChange={(e)=>setReps(e.target.value)} required />
                             </FormControl>
                             <Button type="submit">Submit</Button>
                         </Stack>
