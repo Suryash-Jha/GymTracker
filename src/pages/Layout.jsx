@@ -6,6 +6,7 @@ const Layout = () => {
     return (
         <>
             <Box sx={{ padding: '2vh' }}>
+
                 <DrawerBasic />
                 <Outlet />
             </Box>

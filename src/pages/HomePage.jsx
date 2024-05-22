@@ -3,9 +3,16 @@ import React from 'react'
 import IconXContentCard from '../components/IconXContentCard'
 import firebase from 'firebase/compat/app';
 import { useEffect, useState } from 'react';
+import Add from '@mui/icons-material/Add';
+import UploadExerciseModal from '../components/UploadExerciseModal';
+
+// import RepeatIcon from '@material-ui/icons/Repeat';
 
 const HomePage = () => {
     const [data, setData] = useState([])
+    const [openModal, setOpenModal] = React.useState(false);
+
+
     useEffect(() => {
         const db = firebase.firestore()
         db.collection('OverallStats').get().then(querySnapshot =>
@@ -26,6 +33,11 @@ const HomePage = () => {
         //         console.error("Error writing document: ", error);
         //     });
     }, [])
+    const handleFormSubmit = (e) => {
+        e.preventDefault()
+        console.log('form submitted')
+        setOpenModal(!openModal)
+    }
     console.log(data, 'data')
     return (
         <Box sx={{
@@ -40,9 +52,15 @@ const HomePage = () => {
         }}>
             {data && data.length > 0 ? (
                 <Grid container xs={12} md={12} lg={12}>
-                    <Grid xs={12} md={12} lg={12}>
-                        <Typography sx={{ fontSize: '8vh' }} align="center">GYM TRACKER</Typography>
-                    </Grid>
+                    <Button
+                        variant="outlined"
+                        color="neutral"
+                        startIcon={<Add />}
+                        onClick={() => setOpenModal(true)}
+                    >
+                        New project
+                    </Button>
+                    
                     <Grid xs={12} md={12} lg={12}>
                         <Typography sx={{ fontSize: '6vh' }}>Overall Stats</Typography>
                     </Grid>
@@ -126,6 +144,13 @@ const HomePage = () => {
 
 
             ) : <Typography>Loading...</Typography>}
+            <UploadExerciseModal
+                openModal={openModal}
+                setOpenModal={setOpenModal}
+                handleFormSubmit={handleFormSubmit}
+            />
+            
+
         </Box>
 
     )

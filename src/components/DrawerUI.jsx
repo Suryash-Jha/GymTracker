@@ -7,7 +7,7 @@ import Divider from '@mui/joy/Divider';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { IconButton } from '@mui/joy';
+import { IconButton, Grid, Typography } from '@mui/joy';
 
 export default function DrawerBasic() {
     const [open, setOpen] = React.useState(false);
@@ -21,7 +21,10 @@ export default function DrawerBasic() {
     };
 
     return (
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Grid xs={12} md={12} lg={12}>
+                <Typography sx={{ fontSize: '8vh' }} align="center">GYM TRACKER</Typography>
+            </Grid>
             <IconButton onClick={toggleDrawer(true)}>
                 <MenuIcon />
             </IconButton>
