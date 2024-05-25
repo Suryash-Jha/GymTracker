@@ -68,7 +68,7 @@ const HomePage = () => {
                     <Grid xs={12} md={6} lg={3}>
 
                         <IconXContentCard
-                            Logo="https://via.placeholder.com/150"
+                            Logo="/images/shoes.png"
                             Title="Total Steps"
                             Value={data.totalSteps}
 
@@ -77,7 +77,7 @@ const HomePage = () => {
                     <Grid xs={12} md={6} lg={3}>
 
                         <IconXContentCard
-                            Logo="https://via.placeholder.com/150"
+                            Logo="/images/reps.png"
                             Title="Total Reps Performed"
                             Value={data.totalReps}
                         />
@@ -86,7 +86,7 @@ const HomePage = () => {
 
                         <IconXContentCard
 
-                            Logo="https://via.placeholder.com/150"
+                            Logo="/images/set.png"
                             Title="Total Sets Performed"
                             Value={data.totalSets}
                         />
@@ -95,7 +95,7 @@ const HomePage = () => {
 
                         <IconXContentCard
 
-                            Logo="https://via.placeholder.com/150"
+                            Logo="/images/weight.png"
                             Title="Weight Growth"
                             Value={`${data.currentWeight - data.initialWeight} KGs `}
                             ColorX={data.currentWeight - data.initialWeight > 0 ? "#00ff00" : "#c51c1c"}
@@ -108,7 +108,7 @@ const HomePage = () => {
                     <Grid xs={12} md={6} lg={3}>
 
                         <IconXContentCard
-                            Logo="https://via.placeholder.com/150"
+                            Logo="/images/shoes.png"
                             Title="Total Steps"
                             Value="300"
 
@@ -117,7 +117,7 @@ const HomePage = () => {
                     <Grid xs={12} md={6} lg={3}>
 
                         <IconXContentCard
-                            Logo="https://via.placeholder.com/150"
+                            Logo="/images/reps.png"
                             Title="Total Reps Performed"
                             Value="300"
                         />
@@ -125,8 +125,8 @@ const HomePage = () => {
                     <Grid xs={12} md={6} lg={3}>
 
                         <IconXContentCard
-                            Logo="https://via.placeholder.com/150"
-                            Title="Total Reps Performed"
+                            Logo="/images/set.png"
+                            Title="Total Sets Performed"
                             Value="300"
                         />
                     </Grid>
@@ -134,7 +134,7 @@ const HomePage = () => {
 
                         <IconXContentCard
 
-                            Logo="https://via.placeholder.com/150"
+                            Logo="/images/weight.png"
                             Title="Total Sets Performed"
                             Value="300"
                             ColorX="#0f0f00"

@@ -34,7 +34,7 @@ export default function IconXContentCard(props) {
                         </svg>
                     </SvgIcon>
                 </CircularProgress> */}
-                <img src={props.Logo} style={{ borderRadius: '5vh', height: '10vh', width: '10vh' }} alt="logo" />
+                <img src={props.Logo} style={{  height: '10vh', width: '10vh' }} alt="logo" />
                 <CardContent>
                     <Typography level="body-md" color='#ffffff'>{props.Title}</Typography>
                     <Typography level="h2">{props.Value}</Typography>
