@@ -1,23 +1,26 @@
-import * as React from 'react';
-import Button from '@mui/joy/Button';
-import Card from '@mui/joy/Card';
-import CardContent from '@mui/joy/CardContent';
-import CardActions from '@mui/joy/CardActions';
-import CircularProgress from '@mui/joy/CircularProgress';
-import Typography from '@mui/joy/Typography';
-import SvgIcon from '@mui/joy/SvgIcon';
+import * as React from "react";
+import Button from "@mui/joy/Button";
+import Card from "@mui/joy/Card";
+import CardContent from "@mui/joy/CardContent";
+import CardActions from "@mui/joy/CardActions";
+import CircularProgress from "@mui/joy/CircularProgress";
+import Typography from "@mui/joy/Typography";
+import SvgIcon from "@mui/joy/SvgIcon";
 
 export default function IconXContentCard(props) {
-    return (
-        <Card variant="solid" invertedColors sx={{
-            margin: '1vh',
-            color: "#718a90",
-            boxShadow: "5px 10px",
-            background: props.ColorX ? props.ColorX : "#e4faf2"
-        }
-        }>
-            <CardContent orientation="horizontal">
-                {/* <CircularProgress size="lg" determinate value={20}>
+  return (
+    <Card
+      variant="solid"
+      invertedColors
+      sx={{
+        margin: "1vh",
+        color: "#718a90",
+        boxShadow: "5px 10px",
+        background: props.ColorX ? props.ColorX : "#e4faf2",
+      }}
+    >
+      <CardContent orientation="horizontal">
+        {/* <CircularProgress size="lg" determinate value={20}>
                     <SvgIcon>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -34,13 +37,19 @@ export default function IconXContentCard(props) {
                         </svg>
                     </SvgIcon>
                 </CircularProgress> */}
-                <img src={props.Logo} style={{  height: '10vh', width: '10vh' }} alt="logo" />
-                <CardContent>
-                    <Typography level="body-md" color='#ffffff'>{props.Title}</Typography>
-                    <Typography level="h2">{props.Value}</Typography>
-                </CardContent>
-            </CardContent>
-            {/* <CardActions>
+        <img
+          src={props.Logo}
+          style={{ height: "10vh", width: "10vh" }}
+          alt="logo"
+        />
+        <CardContent>
+          <Typography level="body-md" color="primary">
+            {props.Title}
+          </Typography>
+          <Typography level="h2">{props.Value}</Typography>
+        </CardContent>
+      </CardContent>
+      {/* <CardActions>
                 <Button variant="soft" size="sm">
                     Add to Watchlist
                 </Button>
@@ -48,6 +57,6 @@ export default function IconXContentCard(props) {
                     See breakdown
                 </Button>
             </CardActions> */}
-        </Card >
-    );
+    </Card>
+  );
 }

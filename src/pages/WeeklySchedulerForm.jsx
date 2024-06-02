@@ -1,8 +1,10 @@
-import { Box, FormLabel, Grid, Input } from "@mui/joy";
+import { Box, FormLabel, Grid, Input, Snackbar } from "@mui/joy";
 import { FormControl } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
+import PdfUploader from "../components/FileUpload";
 
 const WeeklySchedulerForm = () => {
+  const [openSnack, setOpenSnack] = useState(false);
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     console.log("form submitted");
@@ -21,9 +23,30 @@ const WeeklySchedulerForm = () => {
         borderRadius: "5vh",
       }}
     >
-      <form onSumbit={handleFormSubmit}>
+      <form onSubmit={handleFormSubmit}>
         <Grid container xs={12} md={12} lg={12}>
           <Grid xs={12} md={12} lg={12}>
+            <FormControl
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <FormLabel>Workout Days/Week: </FormLabel>
+              <Input
+                type="number"
+                defaultValue={6}
+                slotProps={{
+                  input: {
+                    min: 3,
+                    max: 6,
+                  },
+                }}
+                autoFocus
+                required
+              />
+            </FormControl>
             <FormControl
               sx={{
                 display: "flex",
@@ -42,7 +65,22 @@ const WeeklySchedulerForm = () => {
             </FormControl>
           </Grid>
         </Grid>
+        <PdfUploader />
       </form>
+      <Snackbar
+        autoHideDuration={2000}
+        open={openSnack}
+        variant={"solid"}
+        color={"danger"}
+        onClose={(event, reason) => {
+          if (reason === "clickaway") {
+            return;
+          }
+          setOpenSnack(false);
+        }}
+      >
+        snackbar with color.
+      </Snackbar>
     </Box>
   );
 };
