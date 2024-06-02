@@ -4,7 +4,11 @@ import IconXContentCard from "../components/IconXContentCard";
 import { useEffect, useState } from "react";
 import Add from "@mui/icons-material/Add";
 import UploadExerciseModal from "../components/UploadExerciseModal";
-import { postExerciseData, getOverallData } from "../actions/MainAction";
+import {
+  postExerciseData,
+  getOverallData,
+  fetchExerciseList,
+} from "../actions/MainAction";
 import firebase from "firebase/compat/app";
 
 // import RepeatIcon from '@material-ui/icons/Repeat';
@@ -15,14 +19,26 @@ const HomePage = () => {
   const [exerciseName, setExerciseName] = useState("");
   const [reps, setReps] = useState(0);
   const [weightLifted, setWeightLifted] = useState(0);
+  const weekday = [
+    "sunday",
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+  ];
+  const d = new Date();
 
   const fetchOverallData = () => {
     getOverallData().then((querySnapshot) => setData(querySnapshot));
   };
   useEffect(() => {
+    const day = weekday[d.getDay()];
     fetchOverallData();
+    fetchExerciseList(day);
   }, []);
-  const handleFormSubmit = async (e: any) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     const body = {
       exerciseName,
