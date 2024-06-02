@@ -8,6 +8,7 @@ import {
   postExerciseData,
   getOverallData,
   fetchExerciseList,
+  fetchBodyPartList,
 } from "../actions/MainAction";
 import firebase from "firebase/compat/app";
 
@@ -16,7 +17,8 @@ import firebase from "firebase/compat/app";
 const HomePage = () => {
   const [data, setData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
-  const [exerciseName, setExerciseName] = useState("");
+  const [exerciseName, setExerciseName] = useState("Rest");
+  const [exerciseList, setExerciseList] = useState([]);
   const [reps, setReps] = useState(0);
   const [weightLifted, setWeightLifted] = useState(0);
   const weekday = [
@@ -36,8 +38,17 @@ const HomePage = () => {
   useEffect(() => {
     const day = weekday[d.getDay()];
     fetchOverallData();
-    fetchExerciseList(day);
+    fetchBodyPartList().then((querySnapshot) =>
+      setExerciseName(querySnapshot[day])
+    );
   }, []);
+
+  useEffect(() => {
+    fetchExerciseList(exerciseName).then((querySnapshot) =>
+      setExerciseList(querySnapshot?.list)
+    );
+  }, [exerciseName]);
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const body = {
@@ -51,6 +62,7 @@ const HomePage = () => {
     fetchOverallData();
   };
   console.log(data.totalReps, "data");
+  console.log(exerciseList, "exerciseList");
   return (
     <Box
       sx={{
@@ -164,6 +176,7 @@ const HomePage = () => {
         setReps={setReps}
         weightLifted={weightLifted}
         setWeightLifted={setWeightLifted}
+        exerciseList={exerciseList}
       />
     </Box>
   );

@@ -69,21 +69,49 @@ export const postOverallData = (exerciseData) => {
     });
 };
 
-export const fetchExerciseList = async (day) => {
+export const fetchBodyPartList = async () => {
   const docRef = db.collection("WeeklySchedule").doc("BodyPartList");
   let data = {};
   await docRef
     .get()
     .then((doc) => {
       if (doc.exists) data = doc.data();
-      console.log(data, "--->");
     })
     .then(() => {
-      console.log("Document Fetched Successfully!", day, "===>", data[day]);
-      return data[day];
+      console.log("Document Fetched Successfully!", "===>", data);
     })
     .catch((error) => {
       console.error("Error writing document: ", error);
     });
   return data;
+};
+export const fetchExerciseList = async (bodyPart) => {
+  const docRef = db.collection("ExerciseList").doc(bodyPart);
+  let data = {};
+  await docRef
+    .get()
+    .then((doc) => {
+      if (doc.exists) data = doc.data();
+    })
+    .then(() => {
+      console.log("Document Fetched Successfully!", bodyPart, "--->", data);
+    })
+    .catch((error) => {
+      console.error("Error writing document: ", error);
+    });
+  return data;
+};
+export const postBodyPartList = (exerciseList) => {
+  db.collection("WeeklySchedule")
+    .doc("BodyPartList")
+    .set({
+      exerciseList,
+    })
+    .then(() => {
+      console.log("Document successfully written!");
+      console.log("Overall Data Document successfully written!");
+    })
+    .catch((error) => {
+      console.error("Error writing document: ", error);
+    });
 };
