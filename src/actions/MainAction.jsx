@@ -83,7 +83,8 @@ export const fetchBodyPartList = async () => {
     .catch((error) => {
       console.error("Error writing document: ", error);
     });
-  return data;
+  console.log("data-->", data.exerciseList);
+  return data.exerciseList;
 };
 export const fetchExerciseList = async (bodyPart) => {
   const docRef = db.collection("ExerciseList").doc(bodyPart);
