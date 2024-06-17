@@ -28,25 +28,31 @@ export default function DrawerBasic() {
       name: "Home",
       link: "/",
     },
-    {
-      name: "Daily Tracker",
-      link: "/daily-tracker",
-    },
-    {
-      name: "Overall Stats",
-      link: "/overall-stats",
-    },
-    {
-      name: "Setting",
-      link: "/setting",
-    },
+    // {
+    //   name: "Daily Tracker",
+    //   link: "/daily-tracker",
+    // },
+    // {
+    //   name: "Overall Stats",
+    //   link: "/overall-stats",
+    // },
+    // {
+    //   name: "Setting",
+    //   link: "/setting",
+    // },
     {
       name: "Weekly Scheduler",
       link: "/scheduler",
     },
   ];
   return (
-    <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "space-between",
+        marginBottom: "1vh",
+      }}
+    >
       <Grid xs={12} md={12} lg={12}>
         <Typography sx={{ fontSize: "5vh" }} align="center">
           <img
@@ -60,7 +66,10 @@ export default function DrawerBasic() {
           <img src="/images/strength.png" style={{ height: "4vh" }}></img>
         </Typography>
       </Grid>
-      <IconButton onClick={toggleDrawer(true)}>
+      <IconButton
+        sx={{ border: "2px solid #cccccc" }}
+        onClick={toggleDrawer(true)}
+      >
         <MenuIcon />
       </IconButton>
 

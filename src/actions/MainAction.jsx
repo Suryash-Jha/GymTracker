@@ -116,3 +116,17 @@ export const postBodyPartList = (exerciseList) => {
       console.error("Error writing document: ", error);
     });
 };
+export const postExerciseList = (bodyPart, exerciseList) => {
+  db.collection("ExerciseList")
+    .doc(bodyPart)
+    .set({
+      list: exerciseList,
+    })
+    .then(() => {
+      console.log("Document successfully written!");
+      console.log("Overall Data Document successfully written!");
+    })
+    .catch((error) => {
+      console.error("Error writing document: ", error);
+    });
+};

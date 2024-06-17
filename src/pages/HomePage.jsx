@@ -9,6 +9,7 @@ import {
   getOverallData,
   fetchExerciseList,
   fetchBodyPartList,
+  postExerciseList,
 } from "../actions/MainAction";
 import firebase from "firebase/compat/app";
 
@@ -87,7 +88,13 @@ const HomePage = () => {
             <Button
               variant="solid"
               color="primary"
-              onClick={() => setOpenModal(true)}
+              // startDecorator={<Add />}
+              sx={{
+                marginRight: "0vh !important",
+              }}
+              onClick={() => {
+                setOpenModal(true);
+              }}
             >
               Add Exercise
             </Button>
