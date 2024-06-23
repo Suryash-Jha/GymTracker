@@ -38,9 +38,11 @@ const HomePage = () => {
   };
   useEffect(() => {
     const day = weekday[d.getDay()];
+    console.log(day, "day");
     fetchOverallData();
-    fetchBodyPartList().then((querySnapshot) =>
-      setExerciseName(querySnapshot[day])
+    fetchBodyPartList().then(
+      (querySnapshot) => {console.log(querySnapshot, "querySnapshot")
+      setExerciseName(querySnapshot[day])}
     );
   }, []);
 

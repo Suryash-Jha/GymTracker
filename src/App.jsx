@@ -8,8 +8,8 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import firebaseConfig from "./firebaseConfig";
 import WeeklySchedulerForm from "./pages/WeeklySchedulerForm";
-
-const App: React.FC = () => {
+import TestMe from "./pages/testMe";
+const App = () => {
   firebase.initializeApp(firebaseConfig);
   return (
     <BrowserRouter>
@@ -17,6 +17,7 @@ const App: React.FC = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="scheduler" element={<WeeklySchedulerForm />} />
+          <Route path="test" element={<TestMe />} />
           {/* Additional routes can be added here */}
         </Route>
       </Routes>
