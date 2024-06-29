@@ -9,6 +9,7 @@ import "firebase/compat/firestore";
 import firebaseConfig from "./firebaseConfig";
 import WeeklySchedulerForm from "./pages/WeeklySchedulerForm";
 import TestMe from "./pages/testMe";
+import CareerForm from "./pages/CareerForm";
 const App = () => {
   firebase.initializeApp(firebaseConfig);
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route index element={<HomePage />} />
           <Route path="scheduler" element={<WeeklySchedulerForm />} />
           <Route path="test" element={<TestMe />} />
+          <Route path="career" element={<CareerForm />} />
           {/* Additional routes can be added here */}
         </Route>
       </Routes>
