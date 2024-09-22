@@ -23,13 +23,13 @@ const HomePage = () => {
   const [reps, setReps] = useState(0);
   const [weightLifted, setWeightLifted] = useState(0);
   const weekday = [
-    "sunday",
+    "SUNDAY",
     "monday",
     "tuesday",
     "wednesday",
     "thursday",
     "friday",
-    "saturday",
+    "Saturday",
   ];
   const d = new Date();
 
